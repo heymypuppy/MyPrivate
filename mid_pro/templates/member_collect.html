@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico"/>
+    
+    <link rel="stylesheet" href="/static/css/common.css?v=2015-5-20"/>
+    
+    <link rel="stylesheet" href="/static/css/user_center.css"/>
+
+
+    <title>个人中心 - 我的收藏</title>
+</head>
+<body class="day " ng-controller="bodyCtrl"  day-or-night>
+    <section class="common-back" id="wrapBackground">
+        
+            <header id="header">
+                <div class="common-width clearfix">
+
+                        <ul class="member logging" ng-init="loginInfo=true">
+                            <li><a href="/index" class="index">首页</a></li>
+                            <li class="userName">
+                                <a href="" rel="nofollow" draw-user>{{ username }}<em></em></a>
+                                <div>
+                                    <p><a href="/member_index"  rel="nofollow">账号管理</a></p>
+                                    <p><a href="/member_addr"  rel="nofollow">地址管理</a></p>
+                                    <p class="no-bo"><a id="logout" href="/logout" referer-url rel="nofollow">退出</a></p>
+                                </div>
+                            </li>
+                            <li class=""><a href="/member_order" class="order-center"  rel="nofollow">我的订单</a></li>
+                            <li class=""><a href="/member_collect"  rel="nofollow">我的收藏</a></li>
+                        </ul>
+                    
+                </div>
+            </header>
+        
+        <div id="main-box">
+
+            <div ng-controller="colorAction">
+                <div class="dayColor_two"></div>
+                <div class="dayColor_one"></div>
+                <div class="dayColor_three" ng-class="{dayColor_threeActive:threeActive}"></div>
+            </div>
+        
+            
+    <section>
+        <div class="user-center-main-box common-width clearfix">
+            <aside class="fl">
+                <ul>
+                    <li>
+                        <a href="/member_index" rel="nofollow">账号管理</a>
+                    </li>
+                    <li>
+                        <a href="/member_order" rel="nofollow">我的订单</a>
+                    </li>
+                    <li  class="active">
+                        <a href="/member_collect" rel="nofollow">我的收藏</a>
+                    </li>
+                    <li >
+                        <a href="/member_addr"  rel="nofollow">地址管理</a>
+                    </li>
+
+                </ul>
+            </aside>
+            <article class="fl user-center-main">
+                <header>收藏的餐厅</header>
+                
+    
+        <ul class="favorite clearfix transform-style">
+            {% for id,basicTel,resName,resType,resLevel,resImg,collect_status in member_collect %}
+                <li class="restaurant-item fl trans">
+                    <div class="img-box fl">
+                        <a href="/shop_detail"><img src="{{ resImg }}" width="82px" height="82px"></a>
+                    </div>
+                    <article class="restaurant-introduce fl">
+                        <h3 class="ellipsis"><a href="#">{{ resName }}</a></h3>
+                        <dl class="clearfix">
+                            <dt class="fl">{{ resType }}</dt>
+                            <dd class="r-small-star fl">
+                                <div class="r-small-star score" style="width:{{ resLevel }}px"></div>
+                            </dd>
+                        </dl>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+
+
+
+            </article>
+        </div>
+    </section>
+
+        </div>
+    </section>
+    
+
+
+    <script type="text/javascript" src="/static/js/angular.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    
+     
+    <script src="/static/js/service.js"></script>
+    
+    <script>var feedbackUrl = '/ajax/feedback/';var app = angular.module("app", ["dh.dialog", "dh.form", 'dh.service', 'dh.other']);</script>
+    <!--[if lt IE 9]><script src="js/fix.js"></script><![endif]-->
+    
+    
+
+    <script src="/static/js/user_center.js"></script>
+
+    
+    <script>angular.bootstrap(document, ["app"]);</script>
+
+
+
+
+</body>
+</html>

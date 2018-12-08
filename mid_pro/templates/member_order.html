@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico"/>
+    
+    <script type="text/javascript">
+        
+        (function(document, screen) {if (screen.width < 760) {document.location.href="/mobile/";}}(document, screen));
+    </script>
+    <link rel="stylesheet" href="/static/css/common.css?v=2015-5-20"/>
+    <link rel="stylesheet" href="/static/css/user_center.css"/>
+
+    <title>个人中心 - 订单管理</title>
+</head>
+<body class="day " ng-controller="bodyCtrl"  day-or-night>
+    <section class="common-back" id="wrapBackground">
+        
+            <header id="header">
+                <div class="common-width clearfix">
+
+                    
+                        <ul class="member logging" ng-init="loginInfo=true">
+                            <li><a href="/index" class="index">首页</a></li>
+                            <li class="userName">
+                                <a href="" rel="nofollow" draw-user>{{ username }}<em></em></a>
+                                <div>
+                                    <p><a href="/member_index"  rel="nofollow">账号管理</a></p>
+                                    <p><a href="/member_addr"  rel="nofollow">地址管理</a></p>
+                                    <p class="no-bo"><a id="logout" href="#" referer-url rel="nofollow">退出</a></p>
+                                </div>
+                            </li>
+                            <li class=""><a href="/member_order" class="order-center"  rel="nofollow">我的订单</a></li>
+                            <li class=""><a href="/member_collect"  rel="nofollow">我的收藏</a></li>
+                        </ul>
+                    
+                </div>
+            </header>
+        
+        <div id="main-box">
+             <!--二维码-->
+        
+            <div ng-controller="colorAction">
+                <div class="dayColor_two"></div>
+                <div class="dayColor_one"></div>
+                <div class="dayColor_three" ng-class="{dayColor_threeActive:threeActive}"></div>
+            </div>
+        
+            
+    <section>
+        <div class="user-center-main-box common-width clearfix">
+            <aside class="fl">
+                <ul>
+                    <li>
+                        <a href="/member_index" rel="nofollow">账号管理</a>
+                    </li>
+                    <li class="active">
+                        <a href="/member_order" rel="nofollow">我的订单</a>
+                    </li>
+                    <li >
+                        <a href="/member_collect" rel="nofollow">我的收藏</a>
+                    </li>
+                    <li >
+                        <a href="/member_addr"  rel="nofollow">地址管理</a>
+                    </li>
+                </ul>
+            </aside>
+            <article class="fl user-center-main">
+                <header>历史订单</header>
+                
+    <section class="user-center-body order" id="orderBody">
+        {% for id,basicTel,recvName,recvTel,recvAddr,buyTime,orderNum,shopImage,shopName,shopTel,orderType,orderStatus,orderTotalMoney,content in orderinfo %}
+        <div class="order-list ">
+             <div class="order-hd">
+                <span><i>订单编号：</i>{{ orderNum }}</span><i>创建时间：</i>{{ buyTime }}
+             </div>
+
+             <div class="order-bd clearfix">
+                 <div class="fl restaurant-msg">
+                     <div>
+                         <img src="{{ shopImage }}" alt="" width="43" height="43" class="fl" />
+                         <i class="fl">{{ shopName }}</i>
+                     </div>
+                     <p class="clearfix">
+                        <i class="fl"></i>
+                        <span class="fl">餐厅热线：{{ shopTel }}</span>
+                    </p>
+                 </div>
+
+                 <div class="fl order-type padding-margin">
+                     <p>订单类型：{{ orderType }}</p>
+                     <p>订单状态：{{ orderStatus }}</p>
+                 </div>
+                 <div class="fl order-total padding-margin">
+                     <p>订单金额</p>
+                     <p><i>￥{{ orderTotalMoney }}</i></p>
+                 </div>
+                 <div class="order-operate fl padding-margin">
+                 <form method="post" action="/del_order">
+
+                    <input type="hidden" name="orderID" value="{{ id }}">
+                    <p>
+                        <a href="#" class="btn_a see-details"><input type="submit" name="delete" value="删除订单" style="background-color: white;color: #EB5525"><i></i></a>
+                    </p>
+                 </form>
+                 <form method="post" action="/confirm_receipt">
+                    <input type="hidden" name="orderID" value="{{ id }}">
+
+                    <p>
+                        <a href="#" class="btn_a see-details"><input type="submit" name="delete" value="确认收货" style="background-color: white;color: #EB5525"><i></i></a>
+                    </p>
+                 </form>
+                    <p>
+                        <a href="/shop_intro" class="btn_a see-details"><input type="button" value="进入店铺" style="background-color: white;color: #EB5525"><i></i></a>
+                    </p>
+
+                 </div>
+             </div>
+                <div class="order-hd">
+                  <span><i>收货人：</i>{{ recvName }}</span><span><i>收货地址：</i>{{ recvAddr }}</span><span><i>联系方式：</i>{{ recvTel }}</span>
+             </div>
+            {% for dishName,dishNum,dishValue,dishTotal in content %}
+              <div class="order-hd">
+                  <span><i>商品名称：</i>{{ dishName }}</span><span><i>数量：</i>{{ dishNum }}</span><span><i>单价：</i>{{ dishValue }}</span><i>小计：</i>{{ dishTotal }}
+             </div>
+            {% endfor %}
+{#            <div class="order-hd">#}
+{#                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><i>总价：</i>{{ orderNum }}#}
+{#             </div>#}
+
+         </div>
+        {% endfor %}
+    </section>
+
+            </article>
+        </div>
+    </section>
+
+        </div>
+    </section>
+
+
+
+</body>
+</html>

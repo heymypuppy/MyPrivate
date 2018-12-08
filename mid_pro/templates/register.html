@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css" />
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/login.css"/>
+    <title>注册</title>
+</head>
+
+<body>
+
+    <section class="main">
+
+    <div class="log-box" id="registerPageBox">
+        <form method="post" action="/register">
+            <div class="form-group w275">
+                <label for="">手机号码</label>
+                <input name='rphone' type="password" id="rPhone" maxlength="11" class="form-text" placeholder="请输入你的手机号码" value='{{ phone_num }}'/>
+                <span style="color: red;">{{ error_msg }}</span>
+                <span style="color: red;">{{ send_already }}</span>
+                <input type="submit" id="captchaImg" value="短信验证码" />
+            </div>
+        </form>
+
+        <form method="post" action="/hand_regst_msg" >
+            <input name="rePhone" type="password" disabled='disabled' id="rePhoneId" maxlength="11" class="form-text" placeholder="再次输入手机号" value="{{ rephone }}"/>
+            <br />
+            <input name="verify" type="text" disabled='disabled' id="imgCaptcha" maxlength="5" class="form-text" placeholder="输入验证码" value="{{ verif }}"/>
+            <span style="color: red">{{ wrong_reginfo }}</span>
+
+            <div class="form-group w275">
+                <label >登录密码</label>
+                <input name="pwd" type="password" id="rPass" maxlength="10" class="form-text" onpaste="return false" placeholder="输入登录密码 6-10个字符" value="{{ repwd }}"/>
+            </div>
+            <span style="color: red">{{ wrong_pwd }}</span><br />
+            <div class="form-group w275">
+                <input name="pwd1" type="password" id="rPass2" maxlength="10" class="form-text" onpaste="return false" placeholder="再次输入登录密码 6-10个字符" value="{{ repwd1 }}"/>
+                <span style="color: red">{{ wrong_pwd1 }}</span>
+            </div>
+            <button class="form-btn" id="registerPageBtn" >确认注册</button>
+        </form>
+    </div>
+
+
+    </section>
+    <script language="javascript" >
+        function myfun() {
+            if({{ able }}){
+            {#    var countdown=60;#}
+            {#    function settime() {#}
+            {#        if (countdown == 0) {#}
+            {#        document.getElementById("rePhoneId").disabled = '';#}
+            {#        document.getElementById("imgCaptcha").disabled = "";#}
+            {#        document.getElementById("captchaImg").value="免费获取验证码";#}
+            {#        countdown = 60;#}
+            {#        return ;#}
+            {#        } else {#}
+            {#        document.getElementById("rePhoneId").disabled = '';#}
+            {#        document.getElementById("imgCaptcha").disabled = '';#}
+            {#        document.getElementById("captchaImg").value="重新发送(" + countdown + ")";#}
+            {#        countdown--;#}
+            {#        }#}
+            {#        setTimeout(function() {#}
+            {#        settime(myfun)#}
+            {#        },1000)#}
+            {#        }#}
+            {##}
+            {#        settime()#}
+                document.getElementById("rePhoneId").disabled = '';
+                document.getElementById("imgCaptcha").disabled = '';
+            }
+            }
+
+{#// 用js实现在加载完成一个页面后自动执行一个方法#}
+{#/*用window.onload调用wrong_fun()*/#}
+        window.onload=myfun;//不要括号
+    </script>
+    <script>
+        function wrong_veri() {
+            if({{ able1 }}){
+                document.getElementById("rePhoneId").disabled = '';
+                document.getElementById("imgCaptcha").disabled = '';
+                alert("请输入正确注册信息...")
+            }
+            }
+        window.onload=wrong_veri;
+
+    </script>
+    <script type="text/javascript" src="/static/js/register.js"></script>
+
+
+
+</body>
+</html>

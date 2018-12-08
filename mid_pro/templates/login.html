@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css"/>
+    <title>登录</title>
+
+</head>
+<body>
+    
+    <section class="main">
+        <div class="common-width">
+
+            <div class="log-box" id="loginPageBox">
+                <div class="form-group w275">
+                    <label for="lPhone">手机号码</label>
+                    <span class="fs12 fr">没有注册 ？ <a href="/register" class="yo">立即注册</a></span>
+                </div>
+                <form method="post" action="/login">
+{#                    {% csrf_token %}#}
+                <input name='login_id' id="lPhone" value="{{ orig_phone }}" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/></label>
+                <span style="color: red;">{{ wro_acct }}</span>
+                <div class="form-error-message"></div>
+                <div class="form-group w275">
+                    <label  for="lPass" >登录密码</label>
+                    <input name="login_pwd" id="lPass" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/></label>
+                    <span style="color: red;">{{ wro_pwd }}</span>
+                </div>
+                <div class="form-error-message"></div>
+
+                <div class="form-group captcha clearfix">
+                
+                    <input id="lCaptcha" type="text" class="form-text" placeholder="请输入验证码"/>
+                </div>
+                <div class="form-group checkbox clearfix">
+
+                    <span class="fr fs12"><a class="yo" target="_black" ></a></span>
+                </div>
+                <div>
+                    <input type="submit" class="form-btn" id="loginPageBtn" value="登录">
+                </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>

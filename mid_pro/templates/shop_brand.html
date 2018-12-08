@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/restaurant.css"/>
+    <script type="text/javascript">
+
+        (function(document, screen) {if (screen.width < 760) {document.location.href="/mobile/";}}(document, screen));
+    </script>
+    <title>店铺品牌</title>
+</head>
+<body class="day " ng-controller="bodyCtrl" ng-controller="restaurantCtrl" day-or-night>
+    <section class="common-back" id="wrapBackground">
+        
+            <header id="header">
+                <div class="common-width clearfix">
+
+                        <ul class="member logging" ng-init="loginInfo=true">
+                            <li><a href="/index" class="index">首页</a></li>
+                            <li class="userName">
+                                <a href="#" rel="nofollow" draw-user>{{ username }}<em></em></a>
+                                <div>
+                                    <p><a href="/member_index" rel="nofollow">账号管理</a></p>
+                                    <p><a href="/member_addr"  rel="nofollow">地址管理</a></p>
+                                    <p class="no-bo"><a id="logout" href="/logout" referer-url rel="nofollow">退出</a></p>
+                                </div>
+                            </li>
+                            <li class=""><a href="/member_order" class="order-center"  rel="nofollow">我的订单</a></li>
+                            <li class=""><a href="/member_collect"  rel="nofollow">我的收藏</a></li>
+                        </ul>
+   
+                </div>
+            </header>
+
+        <div id="main-box">
+
+            <div ng-controller="colorAction">
+                <div class="dayColor_two"></div>
+                <div class="dayColor_one"></div>
+                <div class="dayColor_three" ng-class="{dayColor_threeActive:threeActive}"></div>
+            </div>
+
+
+    <section class="common-width">
+         <header class="header clearfix back-tan fs14">
+            <div class="common-width">
+               <a href="javascript:;" class="fl landing-header">品牌店铺（西大店）</a>
+            </div>
+        </header>
+        
+            <div class="landing-banner">
+                <img src="/static/images/xianyuxian.jpg" />
+            </div>
+        
+        <section class="restaurant-main common-width" lazy-img-load>
+            <nav class="mark clearfix">
+               
+                    <ul ng-init="tabsAction2 = true">
+                
+{#     LANDING_CONTROL_CLICK               #}
+                     <li ng-class="{cur:tabsAction2}" ng-click="tabsAction(2)">可预订</li>
+                    <li ng-class="{cur:tabsAction3}" ng-click="tabsAction(3)">休息中</li>
+                </ul>
+            </nav>
+        
+        
+            <div class="restaurant-list pre-order" ng-class="{hide:!tabsAction2}">
+            <div class="mark fs16" style="display:none;">可预订</div>
+            <ul class="clearfix">
+                {% for id,shop_addr,image_addr,shop_name,shop_lever,is_working in data_is_working %}
+                    <li class="restaurant-item fl">
+                        <div class="img-box fl">
+                            <a href="{{ shop_addr }}">
+                                <img src="{{ image_addr }}" width="82px" height="82px">
+                            </a>
+                        </div>
+                        <article class="restaurant-introduce fl">
+                            <h3 class="ellipsis"><a href="">{{ shop_name }}</a></h3>
+                            <dl class="clearfix">
+                                <dt class="fl">饮料小吃</dt>
+                                <dd class="small-star fl">
+                                    <div class="small-star score" style="width:{{ shop_lever }}px"></div>
+                                </dd>
+                            </dl>
+                        </article>
+                    </li>
+            {% endfor %}
+
+                
+            </ul>
+        </div>
+        
+        
+            <div class="restaurant-list rest" ng-class="{hide:!tabsAction3}">
+            <div class="mark fs16" style="display:none;">休息中</div>
+            <ul class="clearfix">
+                {% for id,shop_addr,image_addr,shop_name,shop_lever,is_not_working in data_is_not_working %}
+                    <li class="restaurant-item fl">
+                        <div class="img-box fl">
+                            <a href="{{ shop_addr }}">
+                                <img src="{{ image_addr }}" width="82px" height="82px">
+                            </a>
+                        </div>
+                        <article class="restaurant-introduce fl">
+                            <h3 class="ellipsis"><a href="shop_detail.html">{{ shop_name }}</a></h3>
+                            <dl class="clearfix">
+                                <dt class="fl">饮料小吃</dt>
+                                <dd class="small-star fl">
+                                    <div class="small-star score" style="width:{{ shop_lever }}px"></div>
+                                </dd>
+                            </dl>
+
+                        </article>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+        
+        </section>
+    </section>
+
+        </div>
+    </section>
+
+    <script type="text/javascript" src="/static/js/angular.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/service.js"></script>
+    <script>var feedbackUrl = '/ajax/feedback/';var app = angular.module("app", ["dh.dialog", "dh.form", 'dh.service', 'dh.other']);</script>
+    <script src="/static/js/landing.js"></script>
+    <script>angular.bootstrap(document, ["app"]);</script>
+</body>
+</html>

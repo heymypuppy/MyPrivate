@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico"/>
+    
+
+    
+    <link rel="stylesheet" href="/static/css/common.css?v=2015-5-20"/>
+    
+    <link rel="stylesheet" href="/static/css/menuPage.css"/>
+
+    <title>店铺简介</title>
+</head>
+<body class="day " ng-controller="bodyCtrl"  day-or-night>
+    <section class="common-back" id="wrapBackground">
+        
+            <header id="header">
+                <div class="common-width clearfix">
+
+                        <ul class="member" login-box>
+                            <li><a href="/index" class="index">首页</a></li>
+                            <li><a href="/member_index" class="index" >{{ username }}</a></li>
+                            <li><a href="/member_order" class="order-center"  rel="nofollow">查看订单</a></li>
+                        </ul>
+                </div>
+            </header>
+        
+        <div id="main-box">
+
+        
+            <div ng-controller="colorAction">
+                <div class="dayColor_two"></div>
+                <div class="dayColor_one"></div>
+                <div class="dayColor_three" ng-class="{dayColor_threeActive:threeActive}"></div>
+            </div>
+        
+            
+	<section class="menupage-main common-width">
+        
+<header class="nav clearfix">
+    <div class="fl clearfix nav-des">
+        <img src="/static/images/shop_brand/kfc.jpg" alt="肯德基" class="fl" />
+        <div class="fl nav-des-text">
+            <h2 class="ellipsis" title="肯德基">肯德基(西大店)</h2>
+            <div class="clearfix">
+                <div class="fl nav-review">
+                    <div style="width:52.00px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fr clearfix nav-right">
+        
+        <div class="fl nav-right-blast line-right">
+            <p>150<span style="font-size:12px;color:#999;">元</span></p>
+            <span>起送</span>
+        </div>
+        
+        <div class="fl nav-right-blast line-right">
+            <p>100<span style="font-size:12px;color:#999;">分钟</span></p>
+            <span>送餐时间</span>
+        </div>
+        <div class="fl nav-right-collect line-left">
+                <form method="post" action="/shop_collect">
+                <input id='collect' name='collect' type="submit" value="{{ collect_status }}" style="color:grey;background-color: white;font-weight: 500;font-size: 20px" />
+                </form>
+        </div>
+    </div>
+</header>
+
+<ul class="clearfix menu-nav-list" scroll-position-static="160">
+    <li class="no-line active"><a href="/shop_intro">餐厅介绍</a></li>
+    <li><a href="/shop_detail">菜单</a></li>
+</ul>
+
+		<section class="main-box">
+			<div class="restaurant-info clearfix">
+
+				<div class="restaurant-status fl">
+                    
+                        <p class="hours"><label>营业时间 ：</label>[09:00-22:30]</p>
+                    
+                    
+                        <p><label>送餐时间 ：</label>12-62分钟</p>
+                    
+					<p><label>餐厅地址 ：</label>广西大学地铁口H</p>
+
+				</div>
+			</div>
+			<article class="collapse">
+				<header>
+					<h3>餐厅介绍</h3>
+				</header>
+				<section class="description fs12 lh15">
+                    
+肯德基（KentuckyFried Chicken，肯塔基州炸鸡），简称KFC，是美国跨国连锁餐厅之一，也是世界第二大速食及最大炸鸡连锁企业，1952年由创始人哈兰·山德士
+（Colonel Harland Sanders）创建，主要出售炸鸡、汉堡、薯条、盖饭、蛋挞、汽水等高热量快餐食品。
+肯德基隶属于百胜中国控股有限公司（简称“百胜中国”），股票代码为YUMC，是Yum！Brands在中国大陆的特许经营商，拥有肯德基品牌在中国大陆的独家经营权。
+肯德基与百事可乐结成了战略联盟，固定销售百事公司提供的碳酸饮料。2017年6月，《2017年BrandZ最具价值全球品牌100强》公布，肯德基排名第81位。
+自2018年2月17日开始，英国的大部分肯德基网点仍然暂停营业。当地900家门店中，截至2月20日，仍有562家处于关闭状态，在2月18日晚歇业的门店数量达到顶峰的646家。
+                </section>
+			</article>
+            
+			<article class="collapse restaurant-photo">
+				<header>
+					<h3>餐厅相册</h3>
+				</header>
+				<section class="pd12-26 clearfix photo" id="photoBox">
+                    
+                        
+                            <img src="/static/images/shop_brand/kfc/1.jpg" class="fl">
+                            <img src="/static/images/shop_brand/kfc/2.jpg" class="fl">
+                            <img src="/static/images/shop_brand/kfc/3.jpg" class="fl">
+                            <img src="/static/images/shop_brand/kfc/4.jpg" class="fl">
+
+                        
+                    
+				</section>
+                
+			</article>
+        </section>
+	</section>
+        </section>
+
+        </div>
+
+<script>
+        function whether_collect() {
+            if({{ able1 }}){
+                document.getElementById("collect").value = '已收藏';
+            }
+            else {
+                document.getElementById("collect").value = '未收藏';
+
+            }
+        }
+
+        window.onload=whether_collect;
+
+</script>
+
+
+<script>
+    var common_sms_code = '/ajax/common_sms_code/';
+    var ajax_customer_user_register_start = '/ajax/customer_user_register_start/';
+    var common_validate_sms_code = '/ajax/common_validate_sms_code/';
+    var ajax_customer_user_register_register = '/ajax/customer_user_register_register/';
+</script>
+
+
+    <script type="text/javascript" src="/static/js/angular.min.js"></script>
+    <script src="/static/js/common.js"></script>
+
+     
+    <script src="/static/js/service.js"></script>
+
+    <script>var feedbackUrl = '/ajax/feedback/';var app = angular.module("app", ["dh.dialog", "dh.form", 'dh.service', 'dh.other']);</script>
+    <!--[if lt IE 9]><script src="js/fix.js"></script><![endif]-->
+
+
+    <script>
+
+
+
+
+        app.controller("bodyCtrl",["$scope","cache",'$window','$interval', "$http" , function(scope,cache,window,$interval,$http){
+            var reloadFunc = function(){window.location.reload()};
+            loginObj.init(scope,$interval,reloadFunc,reloadFunc).bind();
+            scope.$on('collect-callback',function(e){
+                scope.errorIcon = e.targetScope.errorIcon;
+                scope.errorMsg = e.targetScope.errorMsg;
+                scope.showErrorMsg = true;
+            })
+        }])
+        .directive('showMore', function() {
+            return {
+                restrict: 'C',
+                link: function(scope, elem, attrs) {
+                    elem.on('click', function() {
+                        var img = '', html = '';
+                        for (var i = 0, len = photoUrls.length; i < len; i++) {
+                            img = photoUrls[i];
+                            html += '<img src="' + img + '" class="fl">';
+                        }
+                        angular.element(document.getElementById('photoBox')).append(html);
+                        elem.remove();
+                    });
+                }
+            }
+        })
+        var draw_polygon = function (mapObj, das){
+            var create_polygon = function (mapObj, polygonArray) {
+                polygon = new AMap.Polygon({
+                    path:polygonArray,         //设置多边形边界路径
+                    strokeColor:"#a4bddf",     //线颜色
+                    strokeWeight:1,            //线宽
+                    fillColor: "#9ed7ff",      //填充色
+                    fillOpacity: 0.35          //填充透明度
+                });
+                polygon.setMap(mapObj);
+            };
+
+            if (das.type == 'MultiPolygon') {
+                for (var i=0; i < das.coordinates.length; i++) {
+                    var polygonArr=[];
+                    var polygon_coords = das.coordinates[i][0];
+                    for (var j= 0; j < polygon_coords.length; j++ ) {
+                        polygonArr.push(new AMap.LngLat(polygon_coords[j][0], polygon_coords[j][1]));
+                    }
+                    create_polygon(mapObj, polygonArr);
+                }
+            } else if (das.type == 'Polygon') {
+                var polygonArr=[];
+                for (var i=0; i < das.coordinates[0].length; i++) {
+                    var polygon = das.coordinates[0][i];
+                    polygonArr.push(new AMap.LngLat(polygon[0], polygon[1]));
+                }
+                create_polygon(mapObj, polygonArr);
+            }
+        }
+
+        function map_init(){
+            var r_pos = new AMap.LngLat(121.41033,31.196802);
+            var amap = new AMap.Map('iCenter', {center: r_pos,level: 15,zooms: [9, 17]});
+            var das = {'type': 'MultiPolygon', 'coordinates': [[[[121.39081478118896, 31.205790871306046], [121.39536380767822, 31.21305838097549], [121.39592170715332, 31.218270089457395], [121.39883995056152, 31.21779297316255], [121.40373229980469, 31.218380192875806], [121.40888214111328, 31.21687543505861], [121.40961170196533, 31.215444057835604], [121.40334606170654, 31.214122767319154], [121.40047073364258, 31.21140672327351], [121.39918327331543, 31.20733251093423], [121.39484882354736, 31.205350398225548], [121.39081478118896, 31.205790871306046], [121.39081478118896, 31.205790871306046]]], [[[121.405273, 31.209012], [121.415387, 31.209012], [121.42132, 31.202817], [121.420291, 31.191411], [121.414443, 31.186207], [121.405273, 31.184592], [121.396164, 31.190934], [121.396164, 31.20267], [121.405273, 31.209012]]], [[[121.41992158203124, 31.2168721140415], [121.42944893121339, 31.216340826205943], [121.43335443914796, 31.216413435811617], [121.435758, 31.216142], [121.430179, 31.222128], [121.428033, 31.224338], [121.425496, 31.225797], [121.424503, 31.229017], [121.42063, 31.225696], [121.40945, 31.219347], [121.408849, 31.216917], [121.4116386349487, 31.2170228936836], [121.41992158203124, 31.2168721140415]]], [[[121.413784, 31.183101], [121.42507111639405, 31.181458113076232], [121.42766797616578, 31.1794980807099], [121.435758, 31.179741], [121.438467, 31.19404], [121.435339, 31.202354], [121.437968, 31.204005], [121.435221, 31.211125], [121.434406, 31.210905], [121.433676, 31.213805], [121.429519, 31.210263], [121.42476, 31.209988], [121.425243, 31.204555], [121.42432, 31.193131], [121.413784, 31.183101]]], [[[121.395879, 31.178294], [121.38504232009888, 31.1754940558633], [121.38386277777099, 31.179506122648753], [121.376696, 31.189308], [121.375108, 31.191621], [121.387167, 31.198082], [121.388969, 31.194081], [121.393003, 31.18784], [121.395879, 31.178294], [121.395879, 31.178294]]], [[[121.43561840057373, 31.179799450466017], [121.43639087677002, 31.180350190175215], [121.43639087677002, 31.182259396364255], [121.44317150115967, 31.184168564052225], [121.44411563873291, 31.186408115534373], [121.44450187683105, 31.190850347745457], [121.44025325775146, 31.20524027963493], [121.43493175506592, 31.2022303218499], [121.43802165985107, 31.19297960827092], [121.43561840057373, 31.179799450466017], [121.43561840057373, 31.179799450466017]]], [[[121.40866756439209, 31.216802031625623], [121.41381740570068, 31.20979174118209], [121.42004013061523, 31.208690601216105], [121.42978191375732, 31.210122080671784], [121.43368721008301, 31.2136089271319], [121.43510341644287, 31.216508417323734], [121.41682147979736, 31.21713234662532], [121.40913963317871, 31.217242451368776], [121.40866756439209, 31.216802031625623], [121.40866756439209, 31.216802031625623]]], [[[121.381245, 31.207443], [121.390858, 31.205828], [121.393518, 31.194008], [121.400728, 31.185417], [121.40811, 31.181378], [121.395836, 31.178147], [121.392231, 31.188501], [121.381245, 31.207443], [121.381245, 31.207443]]], [[[121.395664, 31.212912], [121.376567, 31.216031], [121.37691, 31.21104], [121.381416, 31.207479], [121.38206, 31.206929], [121.390901, 31.205681], [121.3928315872803, 31.209277954199695], [121.395664, 31.212912], [121.395664, 31.212912]]], [[[121.40310219580078, 31.21408509134048], [121.40580453442382, 31.214911629052263], [121.4077989206543, 31.215342471521144], [121.40945030688475, 31.215590624995848], [121.413824, 31.210232], [121.420101, 31.208816], [121.426452, 31.209943], [121.426367, 31.194553], [121.417042, 31.182308], [121.412733, 31.182014], [121.407823, 31.181133], [121.400973, 31.184686], [121.393177, 31.193671], [121.391805, 31.197421], [121.391247, 31.202309], [121.391316, 31.203769], [121.390871, 31.20567], [121.39517295770264, 31.205984320914038], [121.39721161376956, 31.20734777014886], [121.39931771960448, 31.208362250840302], [121.40047911114503, 31.211689562052715], [121.40310219580078, 31.21408509134048]]]]};
+            var marker = new AMap.Marker({icon: "/static/desktop/img/coordinate.png",position: r_pos});
+            marker.setMap(amap);
+            if(das){
+                draw_polygon(amap, das);
+            }
+            amap.setFitView();
+        }
+    </script>
+
+
+    <script>angular.bootstrap(document, ["app"]);</script>
+
+    <!-- Baidu Analytics -->
+
+
+</body>
+</html>

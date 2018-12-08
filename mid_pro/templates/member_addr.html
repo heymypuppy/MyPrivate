@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <link rel="icon" type="image/png" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" href="/static/css/common.css?v=2015-5-20"/>
+    <link rel="stylesheet" href="/static/css/user_center.css"/>
+
+    <title>个人中心 - 账号管理</title>
+</head>
+<body class="day " ng-controller="bodyCtrl"  day-or-night>
+    <section class="common-back" id="wrapBackground">
+
+            <header id="header">
+                <div class="common-width clearfix">
+                        <ul class="member logging" ng-init="loginInfo=true">
+                            <li><a href="/index" class="index">首页</a></li>
+                            <li class="userName">
+                                <a href="/member_index" rel="nofollow" draw-user>{{ username }}<em></em></a>
+                                <div>
+                                    <p><a href="/member_index"  rel="nofollow">账号管理</a></p>
+                                    <p><a href="/member_addr"  rel="nofollow">地址管理</a></p>
+                                    <p class="no-bo"><a id="logout" href="/login" referer-url rel="nofollow">退出</a></p>
+                                </div>
+                            </li>
+                            <li class=""><a href="/member_order" class="order-center"  rel="nofollow">我的订单</a></li>
+                            <li class=""><a href="/member_collect"  rel="nofollow">我的收藏</a></li>
+                        </ul>
+
+                </div>
+            </header>
+
+        <div id="main-box">
+
+
+            <div ng-controller="colorAction">
+                <div class="dayColor_two"></div>
+                <div class="dayColor_one"></div>
+                <div class="dayColor_three" ng-class="{dayColor_threeActive:threeActive}"></div>
+            </div>
+
+
+    <section>
+        <div class="user-center-main-box common-width clearfix">
+            <aside class="fl">
+                <ul>
+                    <li>
+                        <a href="/member_index" rel="nofollow">账号管理</a>
+                    </li>
+                    <li>
+                        <a href="/member_order" rel="nofollow">我的订单</a>
+                    </li>
+                    <li >
+                        <a href="/member_collect" rel="nofollow">我的收藏</a>
+                    </li>
+                    <li  class="active">
+                        <a href="/member_addr"  rel="nofollow">地址管理</a>
+                    </li>
+                </ul>
+            </aside>
+            <article class="fl user-center-main">
+                <header>地址管理</header>
+
+    <section class="user-address-main">
+        <header>
+            <h2>已保存地址<a ng-click="showChangePassword()" style="color: black;">（☞ ☞ ☞ ☞ ☞ 点我添加收货地址☜ ☜ ☜ ☜ ☜）</a></h2>
+
+        </header>
+        <article class="mb10">
+        <form id='_form' method="post" action="/del_addr">
+            <table>
+                <colgroup>
+                    <col width="100px">
+                    <col width="145px">
+                    <col width="300px">
+                    <col width="100px">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>收单人</th>
+                        <th>手机号码</th>
+                        <th>送餐地址</th>
+                        <th>操作</th>
+                    </tr>
+                    {% for id,name,tel,addr,basic_tel in addr_contr %}
+                        <tr>
+                            <th><input type="checkbox" name="id" value="{{ id }}">{{ name }}</th>
+                            <th>{{ tel }}</th>
+                            <th>{{ addr }}</th>
+                            <th><a onclick="document.getElementById('_form').submit()" style="color: black">删除</a></th>
+{#                        通过a标签进行post请求#}
+                        </tr>
+                    {% endfor %}
+
+                </thead>
+            </table>
+        </form>
+        </article>
+
+    </section>
+
+            </article>
+        </div>
+    </section>
+
+        </div>
+    </section>
+
+    <dh-dialog class="disnone" header="添加地址" height="500" show="showChangePass">
+        <form method="post" action="/add_addr">
+            <div ng-controller="changePasswordCtrl" class="change-password-box">
+                <div class="form-group">
+                    <div>
+                        <input name='recv_name' type="text"  onpaste="return false" maxlength="10" placeholder="请输入收单人姓名"  />
+                    </div>
+                </div>
+                <div class="form-group mb10">
+                    <div>
+                        <input name='recv_tel' type="text"  onpaste="return false" placeholder="请输入收货手机号码" />
+                    </div>
+                </div>
+                <div class="form-group mb20">
+                    <div>
+                        <input name='recv_addr' type="text" onpaste="return false"  placeholder="请输入送餐地址" />
+
+                    </div>
+                </div>
+                <div class="tr">
+                    <button class="btn small-btn btn-success">确定</button>
+                </div>
+            </div>
+        </form>
+    </dh-dialog>
+
+    <script type="text/javascript" src="/static/js/angular.min.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <script src="/static/js/service.js"></script>
+
+    <script>var feedbackUrl = '/ajax/feedback/';var app = angular.module("app", ["dh.dialog", "dh.form", 'dh.service', 'dh.other']);</script>
+    <!--[if lt IE 9]><script src="/static/js/fix.js"></script><![endif]-->
+
+
+    <script src="/static/js/user_center.js"></script>
+
+
+    <script>angular.bootstrap(document, ["app"]);</script>
+
+</body>
+</html>
